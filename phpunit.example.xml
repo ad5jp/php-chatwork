@@ -1,0 +1,7 @@
+<phpunit colors="true">
+    <php>
+       <env name="chatwork_token" value="xxxxx" />
+       <env name="chatwork_room" value="xxxxx" />
+       <env name="chatwork_to" value="xxxxx" />
+    </php>
+</phpunit>
