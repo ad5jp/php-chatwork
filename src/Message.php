@@ -38,7 +38,7 @@ class Message
      * @param mixed $arguments
      * @return static
      */
-    public static function __callStatic($name, $arguments): static
+    public static function __callStatic($name, $arguments)
     {
         $message = new static();
         return $message->$name(...$arguments);
@@ -49,7 +49,7 @@ class Message
      * @param mixed $arguments
      * @return static
      */
-    public function __call($name, $arguments): static
+    public function __call($name, $arguments)
     {
         if (!method_exists($this, $name)) {
             throw new Exception("method {$name} is not exist");
@@ -58,36 +58,58 @@ class Message
         return $this->$name(...$arguments);
     }
 
-    protected function token(string $token): static
+    /**
+     * @param string $token
+     * @return static
+     */
+    protected function token(string $token)
     {
         $this->token = $token;
         return $this;
     }
 
-    protected function room(string $room): static
+    /**
+     * @param string $room
+     * @return static
+     */
+    protected function room(string $room)
     {
         $this->room = $room;
         return $this;
     }
 
-    protected function to(string $user_id): static
+    /**
+     * @param string $user_id
+     * @return static
+     */
+    protected function to(string $user_id)
     {
         $this->to[] = $user_id;
         return $this;
     }
 
-    protected function body(string $body): static
+    /**
+     * @param string $body
+     * @return static
+     */
+    protected function body(string $body)
     {
         $this->body = $body;
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function id(): ?string
     {
         return $this->id;
     }
 
-    public function send(): static
+    /**
+     * @return static
+     */
+    public function send()
     {
         $message = $this->build();
 
@@ -127,6 +149,9 @@ class Message
         return $this;
     }
 
+    /**
+     * @return string
+     */
     protected function build(): string
     {
         $message = "";
@@ -138,6 +163,9 @@ class Message
         return $message;
     }
 
+    /**
+     * @return string
+     */
     protected function buildTo(): string
     {
         $message = "";

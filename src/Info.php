@@ -11,12 +11,19 @@ class Info extends Message
 {
     protected ?string $title = null;
 
-    protected function title(string $title): static
+    /**
+     * @param string $title
+     * @return static
+     */
+    protected function title(string $title)
     {
         $this->title = $title;
         return $this;
     }
 
+    /**
+     * @return string
+     */
     protected function build(): string
     {
         $message = "";
